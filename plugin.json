@@ -1,12 +1,12 @@
 {
     "ID": "2f4e384e-76ce-45c3-aea2-b16f5e5c328f",
-    "ActionKeyword": "hp",
-    "Name": "Hello World Python",
-    "Description": "Python Hello World example plugin",
-    "Author": "Flow Launcher",
-    "Version": "1.0.0",
+    "ActionKeyword": "task",
+    "Name": "Vikunja Flow",
+    "Description": "Search and manage Vikunja tasks from Flow Launcher",
+    "Author": "Golden Triangle Consulting LLC",
+    "Version": "0.1.0",
     "Language": "python",
-    "Website": "https://github.com/Flow-Launcher/Flow.Launcher.Plugin.HelloWorldPython",
+    "Website": "https://vikunja.io",
     "IcoPath": "Images\\app.png",
     "ExecuteFileName": "main.py"
 }
