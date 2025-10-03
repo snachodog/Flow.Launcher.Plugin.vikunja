@@ -4,7 +4,7 @@
     "Name": "Vikunja Flow",
     "Description": "Search and manage Vikunja tasks from Flow Launcher",
     "Author": "Golden Triangle Consulting LLC",
-    "Version": "0.1.0",
+    "Version": "0.1.1",
     "Language": "python",
     "Website": "https://vikunja.io",
     "IcoPath": "Images\\app.png",
