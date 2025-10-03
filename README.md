@@ -10,23 +10,23 @@ Vikunja Flow is a Flow Launcher plugin that lets you triage, search, and complet
    ```
 2. Import the plugin folder into Flow Launcher (Settings → Plugins → Install from file) or package it for distribution.
 
-The plugin registers the action keyword `vik`.
+The plugin registers the action keyword `task`.
 
 ## Quick start
 
 1. Create a [personal access token](https://tasks.dogiakos.com/api/v1/docs#/Auth/AuthTokenCreate) in Vikunja (recommended) or have your username/password ready.
 2. In Flow Launcher, run:
    ```
-   vik login work --url https://vikunja.example --token <paste-your-token>
+   task login work --url https://vikunja.example --token <paste-your-token>
    ```
    Optional flags:
    * `--verify-tls false` – skip TLS verification for trusted self-signed instances.
-   * `--default-list <list_id>` – set the default list for `vik add`.
-3. Switch instances at any time with `vik use <profile>`.
+   * `--default-list <list_id>` – set the default list for `task add`.
+3. Switch instances at any time with `task use <profile>`.
 
 If you must authenticate with credentials, use:
 ```
-vik login work --url https://vikunja.example --username you --password ********
+task login work --url https://vikunja.example --username you --password ********
 ```
 The password is exchanged for an API token and never stored.
 
@@ -34,14 +34,14 @@ The password is exchanged for an API token and never stored.
 
 | Command | Description |
 | --- | --- |
-| `vik login <profile> --url <base_url> --token <token>` | Add or update a profile. Use `--username`/`--password` instead of `--token` to exchange credentials for a token. |
-| `vik use <profile>` | Switch the active profile. |
-| `vik lists` | Show available lists (cached for 60 seconds). |
-| `vik add "Task title" [--list "Inbox"] [--due YYYY-MM-DD] [--desc "Notes"]` | Create a task. Uses the profile default list if `--list` is omitted. |
-| `vik find <search terms> [--page N]` | Search all tasks. A “Show more…” result autocompletes the next page. |
-| `vik due today|tomorrow|week` | Review upcoming work. |
-| `vik done <task_id>` | Mark a task complete. |
-| `vik open <task_id>` | Retrieve details and open the task URL. |
+| `task login <profile> --url <base_url> --token <token>` | Add or update a profile. Use `--username`/`--password` instead of `--token` to exchange credentials for a token. |
+| `task use <profile>` | Switch the active profile. |
+| `task lists` | Show available lists (cached for 60 seconds). |
+| `task add "Task title" [--list "Inbox"] [--due YYYY-MM-DD] [--desc "Notes"]` | Create a task. Uses the profile default list if `--list` is omitted. |
+| `task find <search terms> [--page N]` | Search all tasks. A “Show more…” result autocompletes the next page. |
+| `task due today|tomorrow|week` | Review upcoming work. |
+| `task done <task_id>` | Mark a task complete. |
+| `task open <task_id>` | Retrieve details and open the task URL. |
 
 Results support quick actions:
 * **Enter** – open the task in your browser.
@@ -97,6 +97,6 @@ store.save_profile(profile, profile.token)
 
 ## Troubleshooting
 
-* **401/403 errors** – refresh your token: `vik login <profile> --token <new-token>`.
+* **401/403 errors** – refresh your token: `task login <profile> --token <new-token>`.
 * **TLS validation failed** – either fix the certificate chain or re-run login with `--verify-tls false` for trusted hosts.
 * **Clipboard copy fails** – install a system clipboard tool (e.g., `pbcopy` on macOS, `xclip` on Linux) or enable Tk clipboard support.

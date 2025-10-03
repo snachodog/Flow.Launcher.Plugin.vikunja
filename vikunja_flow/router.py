@@ -77,7 +77,7 @@ class CommandRouter:
         except VikunjaApiError as exc:
             subtitle = ""
             if exc.status_code in (401, 403):
-                subtitle = "Access denied. Refresh token with 'vik login <profile> --token <token>'."
+                subtitle = "Access denied. Refresh token with 'task login <profile> --token <token>'."
             elif exc.status_code in (None, 0):
                 subtitle = "Check your network connection or TLS settings."
             return [mappers.error_result(str(exc), subtitle)]
@@ -171,7 +171,7 @@ class CommandRouter:
         cancel_token.throw_if_cancelled()
         items = [mappers.task_result(task) for task in results.tasks]
         if results.has_more:
-            next_page_query = f"vik find {command.terms} --page {results.page + 1}"
+            next_page_query = f"task find {command.terms} --page {results.page + 1}"
             items.append(mappers.show_more_result("find", results.page, next_page_query))
         if not items:
             items.append(mappers.info_result("No tasks found", f"Query: {command.terms}"))
@@ -185,7 +185,7 @@ class CommandRouter:
         cancel.throw_if_cancelled()
         items = [mappers.task_result(task) for task in results.tasks]
         if results.has_more:
-            next_query = f"vik due {command.period} --page {results.page + 1}"
+            next_query = f"task due {command.period} --page {results.page + 1}"
             items.append(mappers.show_more_result("due", results.page, next_query))
         if not items:
             items.append(mappers.info_result("Nothing due", mappers.due_subtitle(command.period)))
@@ -204,14 +204,14 @@ class CommandRouter:
     # Helpers ------------------------------------------------------------
     def _help(self) -> List[dict]:
         lines = [
-            "vik login <profile> --url https://host --token <token>",
-            "vik use <profile>",
-            'vik add "Title" --list "Inbox" --due 2024-12-31',
-            "vik find search terms",
-            "vik due today|tomorrow|week",
-            "vik lists",
-            "vik done <task_id>",
-            "vik open <task_id>",
+            "task login <profile> --url https://host --token <token>",
+            "task use <profile>",
+            'task add "Title" --list "Inbox" --due 2024-12-31',
+            "task find search terms",
+            "task due today|tomorrow|week",
+            "task lists",
+            "task done <task_id>",
+            "task open <task_id>",
         ]
         return [mappers.info_result("Vikunja Flow", " | ".join(lines))]
 
@@ -240,4 +240,4 @@ class CommandRouter:
             return matches[0].id
         if profile.default_list_id:
             return profile.default_list_id
-        raise VikunjaApiError("No list specified and no default list configured. Use vik login <profile> --default-list <list_id> or pass --list.")
+        raise VikunjaApiError("No list specified and no default list configured. Use task login <profile> --default-list <list_id> or pass --list.")
